@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
-    private int maxSize;
+    private int maxSize; //no of shelf in the store
     private List<Object> items;
 
     Store(int maxSize){

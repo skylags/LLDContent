@@ -7,9 +7,11 @@ public class Client {
     public static void main(String[] args) {
         ExecutorService ex = Executors.newCachedThreadPool();
         Store store = new Store(5);
+        //8 producer
         for(int i = 1; i<=8; ++i){
             ex.execute(new Producer(store));
         }
+        //20 consumers
         for(int i = 1 ; i <=20; ++i){
             ex.execute(new Consumer(store));
         }
