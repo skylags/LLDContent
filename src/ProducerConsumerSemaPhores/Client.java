@@ -16,6 +16,9 @@ public class Client {
 //        ex.execute(p1);
 //        ex.execute(p2);
         for(int i = 1; i<=8; ++i){
+
+            //Thread t = new Thread(new Producer(store, consSemaphore,prodSemaphore));
+            //t.start();
             ex.execute(new Producer(store, consSemaphore, prodSemaphore));
             //Producer p1 = new Producer(store, prodSemaphore);
             //p1.run();
@@ -24,7 +27,7 @@ public class Client {
         //just create 8 producers and give them to the thread pool to run the run() method
         //20 consumers to consume
         for(int i = 1 ; i <=20; ++i){
-            ex.execute(new Consumer(store, consSemaphore, prodSemaphore));
+            //ex.execute(new Consumer(store, consSemaphore, prodSemaphore));
         }
 
         //finally the thread pool will have 28 tasks(20 consumers + 8 producers)
