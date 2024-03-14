@@ -1,6 +1,10 @@
 package Generics;
 
+import methodoverriding.A;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 //What is unboxing in java? - Request to read about it.
 public class Client {
@@ -38,5 +42,21 @@ public class Client {
         Pair<Integer, Integer> p5 = new Pair<>();
         Pair.doSome(5, 6);
         Pair.doSome("Umang",  89);
+
+        List<Dog> dogs = new ArrayList<>();
+        dogs.add(new Dog());
+        dogs.add(new Dog());
+        dogs.add(new Dog());
+        //dogs.add(new Cat());
+
+        Util.randomMethod(new Dog());
+
+        List<Cat> cats = new ArrayList<>();
+        Util.doSomething(cats);
+
+        Util.doSomething(dogs);
+
+        List<Animal> animals = new ArrayList<>();
+        Util.doSomething(animals);
     }
 }
