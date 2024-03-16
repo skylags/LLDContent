@@ -3,6 +3,7 @@ package Generics;
 import methodoverriding.A;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,5 +59,7 @@ public class Client {
 
         List<Animal> animals = new ArrayList<>();
         Util.doSomething(animals);
+
+
     }
 }
