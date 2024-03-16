@@ -115,6 +115,37 @@ public class Client {
             q.poll(); //pop
         }
 
+
+        //this is how you can override the natural ordering
+        Collections.sort(ls1, new Comparator<String>() {
+            @Override
+            public int compare(String s, String t1) {
+                return t1.compareTo(s);
+            }
+        });
+
+        //obj1, obj2
+
+
+        List<Student> lsStudent = new ArrayList<Student>();
+        Student st1 = new Student(10, 90.0,"ABC");
+        Student st2 = new Student(4, 81.0,"GHU");
+        Student st3 = new Student(7, 87.0,"KBC");
+
+        //st1.compareTo(st2);
+        lsStudent.add(st1);
+        lsStudent.add(st2);
+        lsStudent.add(st3);
+
+        Collections.sort(lsStudent, new StudentPSPComparator());
+        for(Student s : lsStudent){
+            System.out.println(s.univName);
+        }
+
+        //Comparable - it is used to make your user defined data type comparable
+        //used to define the natural ordering of any data type
+
+        //Comparator - defining custom sorting and override the natural ordering
     }
 
 
