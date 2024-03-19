@@ -3,10 +3,9 @@ package LambdasStreams;
 
 import LearnThreads.HelloWorldPrint;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Client {
     public static void main(String[] args) {
@@ -97,5 +96,112 @@ public class Client {
         //This was all about lambdas
         //Lambdas helps us in creating objects of functional interfaces - interfaces with only 1 method to be implemented
 
+        /*
+        Streams - like a pipeline
+        Data(pipeline like thing is going to attached to that data)
+        print all 1000 rows
+        for(int .....) {
+            if(i == 500){
+                //499 rows
+         */
+
+        /*
+        Streams does affect performance on positive side
+        How ? - Streams internally maintains a complex tree like structure which makes the stream smart enough to optimize things
+         */
+
+        List<Integer> ls = List.of(5,4,3,2,8,9,6);
+        Stream<Integer> s1 = ls.stream();
+        Stream<Integer> s2 = ls.stream();
+        System.out.println(s1); //s1 is stream reference
+        //System.out.println(s1.limit(4)); //limit also is a stream reference
+        System.out.println(s1.limit(5).count());
+        //System.out.println(s2.limit(5).count());
+        System.out.println(ls); //Streams doesn't affect the actual data source
+        //Throws an error because stream has already been operated and closed
+        /*
+        Intermediate methods - returns the stream reference, for eg - limit
+        Terminal methods - return the data, for eg - count, forEach
+         */
+        s2.forEach((elem) -> {
+            System.out.println("element is " + elem);
+        });
+
+        //System.out.println(s2.limit(2).count());
+
+        /*
+        filter method
+        sort
+        reduce
+         */
+
+        //filter method
+        List<Integer> ls2 = ls
+                .stream()
+                .filter((elem) -> elem % 2 == 0)
+                .collect(Collectors.toList());
+        System.out.println(ls2);
+
+        //map method + sort method
+        List<Integer> ls3 = ls
+                .stream()
+                .filter((elem) -> elem % 2 == 0)
+                .map((elem) -> elem * elem)
+                .sorted((x, y) -> { return y - x; })
+                .collect(Collectors.toList());
+        System.out.println(ls3);
+
+        //findFirst() ,  reduce
+
+        Optional<Integer> ls4 = ls
+                .stream()
+                .filter((elem) -> elem % 2 == 0)
+                .map((elem) -> elem * elem)
+                .sorted((x, y) -> { return y - x; })
+                .findFirst();
+
+        if(ls4.isPresent()){
+            System.out.println(ls4.get());
+        }
+
+        //Reduce method - helps reduce multiple values into one
+        Integer ls5 = ls
+                .stream()
+                .filter((elem) -> elem % 2 == 0)
+                .map((elem) -> elem * elem)
+                .sorted((x, y) -> { return y - x; })
+                .reduce(0, (a,  b) -> {
+                    return a + b;
+                });
+        System.out.println(ls5);
+
+        Integer ans = 0;
+        for(int i = 0 ; i < ls3.size() ; i++){
+            ans += ls3.get(i);
+        }
+
+        Integer ls6 = ls
+                .stream()
+                .filter((elem) -> elem % 2 == 0)
+                .map((elem) -> elem * elem)
+                .sorted((x, y) -> { return y - x; })
+                .reduce(Integer.MAX_VALUE, (cur_min,  elem) -> {
+                    return Math.min(cur_min , elem);
+                });
+
+        Integer ans1 = Integer.MAX_VALUE;
+        for(int i = 0 ; i < ls3.size() ; i++){
+            ans1 = Math.max(ans1, ls3.get(i));
+        }
+
+        System.out.println(ls6);
+        /*
+        The order of stream methods is important and might affect the output
+        because for the subsequent methods, the previous outputs becomes the inputs
+         */
+        /*
+        Stream internally uses complex tree like DS to optimize the operations and hence helps in improving time and spce both
+        If you really want to read -https://developer.ibm.com/series/java-streams/
+         */
     }
 }
