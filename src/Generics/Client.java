@@ -60,6 +60,8 @@ public class Client {
         List<Animal> animals = new ArrayList<>();
         Util.doSomething(animals);
 
-
+        GenericMethods g1 = new GenericMethods();
+        //String rV = g1.doSomething(1);
+        //Go through operator overloading generics
     }
 }
