@@ -5,6 +5,7 @@ import java.sql.SQLException;
 public class Client {
     public static void main(String[] args) throws ClassNotFoundException{
         Student st1 = new Student();
+        st1.doShit(5);
 
         try{
             st1.findStudentByRollNo(10);

@@ -41,6 +41,10 @@ public class Student {
         }
         return 1;
     }
+
+    public void doShit(int x){
+        this.doShit(x);
+    }
 }
 
 /*
