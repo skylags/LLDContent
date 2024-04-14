@@ -7,4 +7,9 @@ public class Payment {
     REJECTED
     FAILED
      */
+
+    /*
+    Code added by Yash
+     */
+    private String paymentId;
 }
